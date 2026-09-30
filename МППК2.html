@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МППК ВПУ №3 м. Мукачево</title>
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #f4f6f9;
+            --text-color: #333;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav {
+            background-color: #333;
+            display: flex;
+            justify-content: center;
+            padding: 0.5rem;
+            flex-wrap: wrap;
+        }
+        nav a {
+            color: white;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+            border-radius: 4px;
+            margin: 0 5px;
+        }
+        nav a:hover, nav a.active {
+            background-color: var(--primary-color);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .page {
+            display: none;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .page.active {
+            display: block;
+        }
+        h1, h2, h3 {
+            color: var(--primary-color);
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .gallery-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .gallery-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+        .gallery-card p {
+            padding: 1rem;
+            margin: 0;
+            font-weight: bold;
+            text-align: center;
+        }
+        .menu-table, .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+        }
+        .menu-table th, .menu-table td, .schedule-table th, .schedule-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        .menu-table th, .schedule-table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .menu-table tr:nth-child(even), .schedule-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .group-select {
+            margin-bottom: 1.5rem;
+            padding: 0.5rem;
+            font-size: 1rem;
+        }
+        .doc-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 10px 15px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .doc-link:hover {
+            background-color: #004085;
+        }
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: #333;
+            color: white;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Мукачівський політехнічний фаховий коледж ВПУ №3</h1>
+        <p>Офіційний інформаційний портал</p>
+    </header>
+
+    <nav>
+        <a href="#" onclick="showPage('home', event)" class="active">Головна</a>
+        <a href="#" onclick="showPage('canteen', event)">Їдальня та Меню</a>
+        <a href="#" onclick="showPage('schedule', event)">Розклад занять</a>
+    </nav>
+
+    <div class="container">
+
+        <!-- ГОЛОВНА СТОРІНКА -->
+        <div id="home" class="page active">
+            <h2>Ласкаво просимо до нашого коледжу!</h2>
+            <p>Мукачівський політехнічний фаховий коледж ВПУ №3 — це сучасний заклад освіти, який готує кваліфікованих фахівців за технічними та економічними напрямками.</p>
+            <p>За допомогою навігації ви можете переглянути актуальний розклад занять для всіх груп або ознайомитися з асортиментом та фотографіями нашої їдальні.</p>
+        </div>
+
+        <!-- СТОРІНКА ЇДАЛЬНІ -->
+        <div id="canteen" class="page">
+            <h2>Їдальня та Буфет коледжу</h2>
+            <p>Наша їдальня пропонує свіжу випічку, гарячі обіди, напої та перекуси.</p>
+            
+            <h3>Меню на обід</h3>
+            <table class="menu-table">
+                <tr>
+                    <th>Категорія</th>
+                    <th>Страви та асортимент</th>
+                </tr>
+                <tr>
+                    <td>Випічка та фастфуд</td>
+                    <td>Штруделі, круасани, хот-доги, порційна піца, снеки[cite: 1, 3]</td>
+                </tr>
+                <tr>
+                    <td>Кавові напої (Автомат Saeco / Phedra)</td>
+                    <td>Еспресо, Американо, Еспресо з молоком, Капучино, Шоколад, Чай з лимоном[cite: 4]</td>
+                </tr>
+                <tr>
+                    <td>Напої</td>
+                    <td>Соки, вода, солодкі газовані напої, енергетики[cite: 3]</td>
+                </tr>
+            </table>
+
+            <h3 style="margin-top: 2rem;">Фотографії їдальні (оригінальні файди)</h3>
+            <div class="gallery">
+                <div class="gallery-card">
+                    <!-- Оригінальне фото їдальні (Джерело 2) -->
+                    <img src="C:\Users\Учень 4\Desktop\img\IMG-e7c07630bc323a039537ed77dff64549-V.jpg" alt="Обідня зала їдальні">
+                    <p>Обідня зала їдальні</p>
+                </div>
+                <div class="gallery-card">
+                    <!-- Оригінальне фото випічки/піци (Джерело 1) -->
+                    <img src="C:\Users\Учень 4\Desktop\img\IMG-6da6ef860c8b70ec37c02ec488fafa05-V.jpg" alt="Асортимент випічки та піци">
+                    <p>Асортимент випічки та піци</p>
+                </div>
+                <div class="gallery-card">
+                    <!-- Оригінальне фото полиць буфету (Джерело 3) -->
+                    <img src="C:\Users\Учень 4\Desktop\img\IMG-2e3da598cb5e681a93a43f57ddaa2869-V.jpg" alt="Буфетні полиці з напоями та снеками">
+                    <p>Полиці буфету</p>
+                </div>
+                <div class="gallery-card">
+                    <!-- Оригінальне фото кавового автомата (Джерело 4) -->
+                    <img src="C:\Users\Учень 4\Desktop\img\IMG-a9e41dee6586add888fac0683de6f567-V.jpg" alt="Кавовий автомат Saeco Phedra">
+                    <p>Кавовий автомат Saeco Phedra</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- СТОРІНКА РОЗКЛАДУ -->
+        <div id="schedule" class="page">
+           <div class="all-schedules">
+    <h1>Розклад занять усіх груп</h1>
+
+    <!-- Група КР-10 -->
+    <div class="schedule-container">
+        <h2>Група КР-10</h2>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Урок</th>
+                    <th>Понеділок</th>
+                    <th>Вівторок</th>
+                    <th>Середа</th>
+                    <th>Четвер</th>
+                    <th>П’ятниця</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>Електротехніка <span class="cabinet">(37)</span></td><td>Фізична культура</td><td>Фізика та астрономія <span class="cabinet">(36)</span></td><td>Хімія <span class="cabinet">(39)</span></td><td>Виробниче навчання</td></tr>
+                <tr><td><strong>2</strong></td><td>Технології <span class="cabinet">(36)</span></td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>3</strong></td><td>Хімія <span class="cabinet">(39)</span></td><td>Чит. креслень <span class="cabinet">(35)</span></td><td>Іноземна мова <span class="cabinet">(42/43)</span></td><td>Інформатика <span class="cabinet">(40)</span></td><td>—</td></tr>
+                <tr><td><strong>4</strong></td><td>Захист України <span class="cabinet">(27)</span></td><td>Інф. технології <span class="cabinet">(23)</span></td><td>Матеріалознав. <span class="cabinet">(31)</span></td><td>Охорона праці <span class="cabinet">(13)</span></td><td>—</td></tr>
+                <tr><td><strong>5</strong></td><td>ПДР <span class="cabinet">(37)</span></td><td>Технологія РТА <span class="cabinet">(36)</span></td><td>Укр. мова <span class="cabinet">(31)</span></td><td>Ел.радіо.вимір. <span class="cabinet">(35)</span></td><td>—</td></tr>
+                <tr><td><strong>6</strong></td><td>Радіоелектроніка <span class="cabinet">(36)</span></td><td>Укр. літ-ра <span class="cabinet">(25)</span></td><td>Всесвітня історія <span class="cabinet">(41)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>7</strong></td><td>Іст. України <span class="cabinet">(41)</span></td><td>Біологія <span class="cabinet">(39)</span></td><td>Математика <span class="cabinet">(25)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>8</strong></td><td>Фізкультура</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Група КР-11 -->
+    <div class="schedule-container">
+        <h2>Група КР-11</h2>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Урок</th>
+                    <th>Понеділок</th>
+                    <th>Вівторок</th>
+                    <th>Середа</th>
+                    <th>Четвер</th>
+                    <th>П’ятниця</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>Ринкова екон. <span class="cabinet">(34)</span></td><td>Математика <span class="cabinet">(27)</span></td><td>Охорона праці <span class="cabinet">(13)</span></td><td>Спецтехнологія <span class="cabinet">(35)</span></td><td>Матеріалознав. <span class="cabinet">(25)</span></td></tr>
+                <tr><td><strong>2</strong></td><td>Фізика і астр. <span class="cabinet">(25)</span></td><td>Хімія <span class="cabinet">(39)</span></td><td>Радіоелектроніка <span class="cabinet">(35)</span></td><td>Захист України <span class="cabinet">(27)</span></td><td>—</td></tr>
+                <tr><td><strong>3</strong></td><td>Ел.радіовимір. <span class="cabinet">(35)</span></td><td>Географія <span class="cabinet">(41)</span></td><td>Фізика та астрономія <span class="cabinet">(25)</span></td><td>Осн.труд.права <span class="cabinet">(13)</span></td><td>Фізична культура</td></tr>
+                <tr><td><strong>4</strong></td><td>Чит. креслень <span class="cabinet">(35)</span></td><td>Фізкультура</td><td>Укр. літ-ра <span class="cabinet">(33)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>5</strong></td><td>Укр. мова <span class="cabinet">(33)</span></td><td>Історія України <span class="cabinet">(41)</span></td><td>Біологія та екологія <span class="cabinet">(39)</span></td><td>Електротехніка <span class="cabinet">(37)</span></td><td>Спецтехнологія <span class="cabinet">(35)</span></td></tr>
+                <tr><td><strong>6</strong></td><td>Хімія <span class="cabinet">(39)</span></td><td>Математика <span class="cabinet">(25)</span></td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>7</strong></td><td>Інф. технології <span class="cabinet">(23)</span></td><td>Іноземна мова <span class="cabinet">(42/43)</span></td><td>Інформатика <span class="cabinet">(40)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>8</strong></td><td>Укр. літ-ра <span class="cabinet">(33)</span></td><td>Захист України <span class="cabinet">(27)</span></td><td>—</td><td>—</td><td>—</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Група КР-12 -->
+    <div class="schedule-container">
+        <h2>Група КР-12</h2>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Урок</th>
+                    <th>Понеділок</th>
+                    <th>Вівторок</th>
+                    <th>Середа</th>
+                    <th>Четвер</th>
+                    <th>П’ятниця</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>Хімія <span class="cabinet">(39)</span></td><td>Спецтехнологія <span class="cabinet">(21)</span></td><td>Фізична культура</td><td>Допуски і технічні вимірювання <span class="cabinet">(21)</span></td><td>Виробниче навчання</td></tr>
+                <tr><td><strong>2</strong></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>3</strong></td><td>Фізкультура</td><td>Інф. технології <span class="cabinet">(23)</span></td><td>Матеріалознавство <span class="cabinet">(21)</span></td><td>Чит. креслень <span class="cabinet">(21)</span></td><td>—</td></tr>
+                <tr><td><strong>4</strong></td><td>Охорона праці <span class="cabinet">(13)</span></td><td>Біологія і екол. <span class="cabinet">(37)</span></td><td>Захист України <span class="cabinet">(27)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>5</strong></td><td>Матеріалознав. <span class="cabinet">(21)</span></td><td>Математика <span class="cabinet">(25)</span></td><td>ПДР <span class="cabinet">(27)</span></td><td>Укр. мова <span class="cabinet">(33)</span></td><td>—</td></tr>
+                <tr><td><strong>6</strong></td><td>Доп. і тех. вим. <span class="cabinet">(21)</span></td><td>Географія <span class="cabinet">(41)</span></td><td>Укр. літ-ра <span class="cabinet">(33)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>7</strong></td><td>Фізика і астрономія <span class="cabinet">(24)</span></td><td>Інформатика <span class="cabinet">(40)</span></td><td>Історія України <span class="cabinet">(41)</span></td><td>Фізика і астрон. <span class="cabinet">(24)</span></td><td>—</td></tr>
+                <tr><td><strong>8</strong></td><td>Іноземна мова <span class="cabinet">(42/43)</span></td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Група КР-13 -->
+    <div class="schedule-container">
+        <h2>Група КР-13</h2>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Урок</th>
+                    <th>Понеділок</th>
+                    <th>Вівторок</th>
+                    <th>Середа</th>
+                    <th>Четвер</th>
+                    <th>П’ятниця</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>Психол.діл.відн <span class="cabinet">(38)</span></td><td>Хімія <span class="cabinet">(39)</span></td><td>Біологія і екологія <span class="cabinet">(27)</span></td><td>Осн.труд.права <span class="cabinet">(13)</span></td><td>Хімія <span class="cabinet">(39)</span></td></tr>
+                <tr><td><strong>2</strong></td><td>Бухгалтерський облік <span class="cabinet">(34)</span></td><td>Історія України <span class="cabinet">(41)</span></td><td>Охорона праці <span class="cabinet">(22)</span></td><td>Інформатика <span class="cabinet">(40)</span></td><td>—</td></tr>
+                <tr><td><strong>3</strong></td><td>Українська мова <span class="cabinet">(33)</span></td><td>Фізична культура</td><td>Бухгалтер.облік <span class="cabinet">(34)</span></td><td>Фізика і астрономія <span class="cabinet">(24)</span></td><td>—</td></tr>
+                <tr><td><strong>4</strong></td><td>Осн. док. забез. <span class="cabinet">(11)</span></td><td>Осн. енергоефек. <span class="cabinet">(21)</span></td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>5</strong></td><td>Технології <span class="cabinet">(34)</span></td><td>Інф.сист.і технол <span class="cabinet">(23)</span></td><td>Іноземна мова <span class="cabinet">(42/43)</span></td><td>Фізкультура</td><td>Математика <span class="cabinet">(25)</span></td></tr>
+                <tr><td><strong>6</strong></td><td>Економіка п-ств <span class="cabinet">(34)</span></td><td>Ділова укр.мова <span class="cabinet">(23)</span></td><td>Математика <span class="cabinet">(25)</span></td><td>Укр.література <span class="cabinet">(33)</span></td><td>—</td></tr>
+                <tr><td><strong>7</strong></td><td>Осн. мед.знань <span class="cabinet">(37)</span></td><td>Бухгалтер.облік <span class="cabinet">(34)</span></td><td>Фізика і астрон. <span class="cabinet">(24)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>8</strong></td><td>Укр. літ-ра <span class="cabinet">(33)</span></td><td>Математика <span class="cabinet">(25)</span></td><td>Охорона праці <span class="cabinet">(13)</span></td><td>—</td><td>—</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Група КР-14 -->
+    <div class="schedule-container">
+        <h2>Група КР-14</h2>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Урок</th>
+                    <th>Понеділок</th>
+                    <th>Вівторок</th>
+                    <th>Середа</th>
+                    <th>Четвер</th>
+                    <th>П’ятниця</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>Спецтехнологія <span class="cabinet">(12)</span></td><td>Виробниче навчання</td><td>Спецтехнологія <span class="cabinet">(12)</span></td><td>Фізична культура</td><td>Історія України <span class="cabinet">(32)</span></td></tr>
+                <tr><td><strong>2</strong></td><td>Укр. мова <span class="cabinet">(31)</span></td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>3</strong></td><td>Іноземна мова <span class="cabinet">(42/43)</span></td><td>Електротехніка <span class="cabinet">(12)</span></td><td>Ел.матер.знавст <span class="cabinet">(12)</span></td><td>Укр. літ-ра <span class="cabinet">(31)</span></td><td>—</td></tr>
+                <tr><td><strong>4</strong></td><td>Фізкультура</td><td>Хімія <span class="cabinet">(39)</span></td><td>Ринкова екон. <span class="cabinet">(34)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>5</strong></td><td>Захист України <span class="cabinet">(27)</span></td><td>Читан.креслень <span class="cabinet">(37)</span></td><td>Інформатика <span class="cabinet">(40)</span></td><td>Громад.освіта <span class="cabinet">(41)</span></td><td>—</td></tr>
+                <tr><td><strong>6</strong></td><td>Технології <span class="cabinet">(23)</span></td><td>Охорона праці <span class="cabinet">(13)</span></td><td>Біологія і екол. <span class="cabinet">(37)</span></td><td>Зарубіж.літ-ра <span class="cabinet">(37)</span></td><td>—</td></tr>
+                <tr><td><strong>7</strong></td><td>Математика <span class="cabinet">(25)</span></td><td>Фізика і астрон. <span class="cabinet">(36)</span></td><td>Історія України <span class="cabinet">(32)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>8</strong></td><td>Географія <span class="cabinet">(32)</span></td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Група КР-15 -->
+    <div class="schedule-container">
+        <h2>Група КР-15</h2>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Урок</th>
+                    <th>Понеділок</th>
+                    <th>Вівторок</th>
+                    <th>Середа</th>
+                    <th>Четвер</th>
+                    <th>П’ятниця</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>Фізична культура</td><td>Фізика і астрономія <span class="cabinet">(25)</span></td><td>Виробниче навчання</td><td>Чит.буд.креслен. <span class="cabinet">(38)</span></td><td>Математика <span class="cabinet">(38)</span></td></tr>
+                <tr><td><strong>2</strong></td><td>Осн.матеріалозн <span class="cabinet">(38)</span></td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>3</strong></td><td>Технології <span class="cabinet">(37)</span></td><td>Фізкультура</td><td>Зарубіж.літ-ра <span class="cabinet">(23)</span></td><td>Інформатика <span class="cabinet">(40)</span></td><td>—</td></tr>
+                <tr><td><strong>4</strong></td><td>Історія України <span class="cabinet">(32)</span></td><td>Спецтехнологія <span class="cabinet">(12)</span></td><td>Географія <span class="cabinet">(32)</span></td><td>Громад.освіта <span class="cabinet">(41)</span></td><td>—</td></tr>
+                <tr><td><strong>5</strong></td><td>Охорона праці <span class="cabinet">(13)</span></td><td>Спецтехнологія <span class="cabinet">(12)</span></td><td>Всесвітня історія <span class="cabinet">(32)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>6</strong></td><td>Захист України <span class="cabinet">(27)</span></td><td>Електротехніка <span class="cabinet">(12)</span></td><td>Ринкова екон. <span class="cabinet">(34)</span></td><td>Хімія <span class="cabinet">(39)</span></td><td>—</td></tr>
+                <tr><td><strong>7</strong></td><td>Іноземна мова <span class="cabinet">(42/43)</span></td><td>Біологія і екол. <span class="cabinet">(37)</span></td><td>Укр.мова <span class="cabinet">(34)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>8</strong></td><td>Спецтехнологія <span class="cabinet">(12)</span></td><td>Іноземна мова <span class="cabinet">(42/43)</span></td><td>Укр.література <span class="cabinet">(34)</span></td><td>—</td><td>—</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Група КР-16 -->
+    <div class="schedule-container">
+        <h2>Група КР-16</h2>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Урок</th>
+                    <th>Понеділок</th>
+                    <th>Вівторок</th>
+                    <th>Середа</th>
+                    <th>Четвер</th>
+                    <th>П’ятниця</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>Укр. мова <span class="cabinet">(33)</span></td><td>ПДР <span class="cabinet">(41)</span></td><td>Іноземна мова <span class="cabinet">(42/43)</span></td><td>Заруб. літ-ра <span class="cabinet">(22)</span></td><td>Фізкультура</td></tr>
+                <tr><td><strong>2</strong></td><td>Укр. літ-ра <span class="cabinet">(33)</span></td><td>Біологія і екологія <span class="cabinet">(37)</span></td><td>Охорона праці <span class="cabinet">(13)</span></td><td>Хімія <span class="cabinet">(39)</span></td><td>—</td></tr>
+                <tr><td><strong>3</strong></td><td>Осн. роб на ПК <span class="cabinet">(11)</span></td><td>Фізика і астрономія <span class="cabinet">(24)</span></td><td>Фізична культура</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>4</strong></td><td>Математика <span class="cabinet">(38)</span></td><td>Громад.освіта <span class="cabinet">(41)</span></td><td>Чит. креслень <span class="cabinet">(36)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>5</strong></td><td>Електрорадіо-вимірювання <span class="cabinet">(35)</span></td><td>Історія України <span class="cabinet">(32)</span></td><td>Технологія ЛОМ <span class="cabinet">(36)</span></td><td>Інф. технології <span class="cabinet">(25)</span></td><td>Математика <span class="cabinet">(38)</span></td></tr>
+                <tr><td><strong>6</strong></td><td>Всесвітня історія <span class="cabinet">(32)</span></td><td>Інформатика <span class="cabinet">(40)</span></td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>7</strong></td><td>Захист України <span class="cabinet">(27)</span></td><td>Укр. літ-ра <span class="cabinet">(33)</span></td><td>Укр. мова <span class="cabinet">(33)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>8</strong></td><td>Електротехніка <span class="cabinet">(37)</span></td><td>Фізика і астрон. <span class="cabinet">(24)</span></td><td>—</td><td>—</td><td>—</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Група КР-17 -->
+    <div class="schedule-container">
+        <h2>Група КР-17</h2>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Урок</th>
+                    <th>Понеділок</th>
+                    <th>Вівторок</th>
+                    <th>Середа</th>
+                    <th>Четвер</th>
+                    <th>П’ятниця</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>Гарант. обслуг. <span class="cabinet">(11)</span></td><td>Українська література <span class="cabinet">(31)</span></td><td>Фізика і астрономія <span class="cabinet">(24)</span></td><td>Іноземна мова <span class="cabinet">(42/43)</span></td><td>Біологія і екологія <span class="cabinet">(22)</span></td></tr>
+                <tr><td><strong>2</strong></td><td>Інформатика <span class="cabinet">(40)</span></td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>3</strong></td><td>Фізична культура</td><td>Фізика і астрон. <span class="cabinet">(24)</span></td><td>Проф. етика <span class="cabinet">(31)</span></td><td>Математика <span class="cabinet">(38)</span></td><td>Захист України <span class="cabinet">(27)</span></td></tr>
+                <tr><td><strong>4</strong></td><td>Комп. графіка <span class="cabinet">(40)</span></td><td>Іноземна мова <span class="cabinet">(42/43)</span></td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>5</strong></td><td>Історія України <span class="cabinet">(32)</span></td><td>Українська мова <span class="cabinet">(33)</span></td><td>Засоби КІС <span class="cabinet">(11)</span></td><td>ТОІ <span class="cabinet">(11)</span></td><td>Охорона праці <span class="cabinet">(31)</span></td></tr>
+                <tr><td><strong>6</strong></td><td>Географія <span class="cabinet">(32)</span></td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>7</strong></td><td>Хімія <span class="cabinet">(39)</span></td><td>Опер. системи <span class="cabinet">(11)</span></td><td>Громад освіта <span class="cabinet">(32)</span></td><td>Укр. літ-ра <span class="cabinet">(31)</span></td><td>—</td></tr>
+                <tr><td><strong>8</strong></td><td>Фізкультура</td><td>Біологія і екол. <span class="cabinet">(37)</span></td><td>—</td><td>—</td><td>—</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Група КР-18 -->
+    <div class="schedule-container">
+        <h2>Група КР-18</h2>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Урок</th>
+                    <th>Понеділок</th>
+                    <th>Вівторок</th>
+                    <th>Середа</th>
+                    <th>Четвер</th>
+                    <th>П’ятниця</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>Осн.труд.закон. <span class="cabinet">(13)</span></td><td>Укр. мова <span class="cabinet">(33)</span></td><td>Укр.література <span class="cabinet">(33)</span></td><td>Тех.монт.ВЕДЖ <span class="cabinet">(27)</span></td><td>Фізика і астрономія <span class="cabinet">(24)</span></td></tr>
+                <tr><td><strong>2</strong></td><td>Математика <span class="cabinet">(38)</span></td><td>Укр. літ-ра <span class="cabinet">(33)</span></td><td>Тех.монт.ВЕДЖ <span class="cabinet">(13)</span></td><td>Осн. ІКУ <span class="cabinet">(27)</span></td><td>—</td></tr>
+                <tr><td><strong>3</strong></td><td>Технологія монтажу ТС <span class="cabinet">(36)</span></td><td>Технології <span class="cabinet">(27)</span></td><td>Укр. мова <span class="cabinet">(33)</span></td><td>Іноземна мова <span class="cabinet">(42/43)</span></td><td>—</td></tr>
+                <tr><td><strong>4</strong></td><td>Хімія <span class="cabinet">(39)</span></td><td>Фізкультура</td><td>Інформатика <span class="cabinet">(40)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>5</strong></td><td>Фізична культура</td><td>Матеріалознавство <span class="cabinet">(35)</span></td><td>Охорона праці <span class="cabinet">(13)</span></td><td>Хімія <span class="cabinet">(39)</span></td><td>Захист України <span class="cabinet">(27)</span></td></tr>
+                <tr><td><strong>6</strong></td><td>Інформатика <span class="cabinet">(40)</span></td><td>Технологія монтажу ТС <span class="cabinet">(36)</span></td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>7</strong></td><td>Електротехніка <span class="cabinet">(34)</span></td><td>Біологія і екологія <span class="cabinet">(37)</span></td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>8</strong></td><td>Тех.креслення <span class="cabinet">(37)</span></td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Група КР-19 -->
+    <div class="schedule-container">
+        <h2>Група КР-19</h2>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Урок</th>
+                    <th>Понеділок</th>
+                    <th>Вівторок</th>
+                    <th>Середа</th>
+                    <th>Четвер</th>
+                    <th>П’ятниця</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>Іноземна мова <span class="cabinet">(42/43)</span></td><td>Фізика і астрономія <span class="cabinet">(24)</span></td><td>ТОІ <span class="cabinet">(11)</span></td><td>Українська мова <span class="cabinet">(33)</span></td><td>Укр. літ-ра <span class="cabinet">(33)</span></td></tr>
+                <tr><td><strong>2</strong></td><td>Фізкультура</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>3</strong></td><td>Українська література <span class="cabinet">(33)</span></td><td>Іноземна мова <span class="cabinet">(42/43)</span></td><td>Гарант. обслуг. <span class="cabinet">(11)</span></td><td>Громад. освіта <span class="cabinet">(32)</span></td><td>Історія України <span class="cabinet">(32)</span></td></tr>
+                <tr><td><strong>4</strong></td><td>Математика <span class="cabinet">(38)</span></td><td>Проф. етика <span class="cabinet">(27)</span></td><td>Фізика і астрон. <span class="cabinet">(24)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>5</strong></td><td>Хімія <span class="cabinet">(39)</span></td><td>Інформатика <span class="cabinet">(40)</span></td><td>Захист України <span class="cabinet">(27)</span></td><td>Біологія і екологія <span class="cabinet">(22)</span></td><td>—</td></tr>
+                <tr><td><strong>6</strong></td><td>Комп. графіка <span class="cabinet">(40)</span></td><td>Засоби КІС <span class="cabinet">(11)</span></td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>7</strong></td><td>Опер. системи <span class="cabinet">(11)</span></td><td>Географія <span class="cabinet">(32)</span></td><td>Біологія і екол. <span class="cabinet">(37)</span></td><td>Фізична культура</td><td>—</td></tr>
+                <tr><td><strong>8</strong></td><td>Охорона праці <span class="cabinet">(32)</span></td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Група КР-21 -->
+    <div class="schedule-container">
+        <h2>Група КР-21</h2>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Урок</th>
+                    <th>Понеділок</th>
+                    <th>Вівторок</th>
+                    <th>Середа</th>
+                    <th>Четвер</th>
+                    <th>П’ятниця</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>Виробниче навчання</td><td>Захист України <span class="cabinet">(13)</span></td><td>Математика <span class="cabinet">(38)</span></td><td>Фізика і астрономія <span class="cabinet">(24)</span></td><td>Громад. освіта <span class="cabinet">(41)</span></td></tr>
+                <tr><td><strong>2</strong></td><td>Укр. мова <span class="cabinet">(33)</span></td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>3</strong></td><td>Історія України <span class="cabinet">(32)</span></td><td>Імп.та цифр.тех. <span class="cabinet">(35)</span></td><td>Фізична культура</td><td>Технології <span class="cabinet">(35)</span></td><td>—</td></tr>
+                <tr><td><strong>4</strong></td><td>Всесвітня історія <span class="cabinet">(32)</span></td><td>Інформатика <span class="cabinet">(40)</span></td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>5</strong></td><td>Біологія і екологія <span class="cabinet">(37)</span></td><td>Географія <span class="cabinet">(32)</span></td><td>Українська література <span class="cabinet">(31)</span></td><td>Іноземна мова <span class="cabinet">(42/43)</span></td><td>—</td></tr>
+                <tr><td><strong>6</strong></td><td>Заруб. літ-ра <span class="cabinet">(31)</span></td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>7</strong></td><td>Хімія <span class="cabinet">(39)</span></td><td>Спецтехнологія <span class="cabinet">(35)</span></td><td>Осн.радіоелектр <span class="cabinet">(35)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>8</strong></td><td>Фізкультура</td><td>Фізика і астрон. <span class="cabinet">(24)</span></td><td>Укр.мова <span class="cabinet">(33)</span></td><td>—</td><td>—</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Група КР-22 -->
+    <div class="schedule-container">
+        <h2>Група КР-22</h2>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Урок</th>
+                    <th>Понеділок</th>
+                    <th>Вівторок</th>
+                    <th>Середа</th>
+                    <th>Четвер</th>
+                    <th>П’ятниця</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td colspan="5" style="text-align: center;">Виробнича практика</td></tr>
+                <tr><td><strong>2</strong></td><td colspan="5" style="text-align: center;">—</td></tr>
+                <tr><td><strong>3</strong></td><td colspan="5" style="text-align: center;">—</td></tr>
+                <tr><td><strong>4</strong></td><td colspan="5" style="text-align: center;">—</td></tr>
+                <tr><td><strong>5</strong></td><td colspan="5" style="text-align: center;">—</td></tr>
+                <tr><td><strong>6</strong></td><td colspan="5" style="text-align: center;">—</td></tr>
+                <tr><td><strong>7</strong></td><td colspan="5" style="text-align: center;">—</td></tr>
+                <tr><td><strong>8</strong></td><td colspan="5" style="text-align: center;">—</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Група КР-23 -->
+    <div class="schedule-container">
+        <h2>Група КР-23</h2>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Урок</th>
+                    <th>Понеділок</th>
+                    <th>Вівторок</th>
+                    <th>Середа</th>
+                    <th>Четвер</th>
+                    <th>П’ятниця</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>Виробниче навчання</td><td>Математика <span class="cabinet">(38)</span></td><td>Заруб. літ-ра <span class="cabinet">(31)</span></td><td>Технології <span class="cabinet">(34)</span></td><td>Економічний аналіз <span class="cabinet">(34)</span></td></tr>
+                <tr><td><strong>2</strong></td><td>Економіка п-ств <span class="cabinet">(34)</span></td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>3</strong></td><td>Інформатика <span class="cabinet">(40)</span></td><td>Історія України <span class="cabinet">(41)</span></td><td>Інф.сист.бух.обл <span class="cabinet">(11)</span></td><td>Біологія і екол. <span class="cabinet">(22)</span></td><td>—</td></tr>
+                <tr><td><strong>4</strong></td><td>Укр. літ-ра <span class="cabinet">(31)</span></td><td>Всесвітня історія <span class="cabinet">(41)</span></td><td>Бух.облік <span class="cabinet">(34)</span></td><td>Укр. мова <span class="cabinet">(33)</span></td><td>—</td></tr>
+                <tr><td><strong>5</strong></td><td>Бухгалтерський облік <span class="cabinet">(34)</span></td><td>Географія <span class="cabinet">(41)</span></td><td>Іноземна мова <span class="cabinet">(42/43)</span></td><td>Фізика і астрономія <span class="cabinet">(36)</span></td><td>—</td></tr>
+                <tr><td><strong>6</strong></td><td>Фізична культура</td><td>Фізкультура</td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>7</strong></td><td>Захист України (Осн. мед. знань) <span class="cabinet">(38)</span></td><td>Хімія <span class="cabinet">(39)</span></td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>8</strong></td><td>Громад.освіта <span class="cabinet">(27)</span></td><td>Осн.мед.знань <span class="cabinet">(31)</span></td><td>—</td><td>—</td><td>—</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Група КР-24 -->
+    <div class="schedule-container">
+        <h2>Група КР-24</h2>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Урок</th>
+                    <th>Понеділок</th>
+                    <th>Вівторок</th>
+                    <th>Середа</th>
+                    <th>Четвер</th>
+                    <th>П’ятниця</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>Фізична культура</td><td>Іноземна мова <span class="cabinet">(42/43)</span></td><td>Виробниче навчання</td><td>Історія України <span class="cabinet">(41)</span></td><td>Захист України <span class="cabinet">(13)</span></td></tr>
+                <tr><td><strong>2</strong></td><td>Географія <span class="cabinet">(41)</span></td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>3</strong></td><td>Спецтехнологія <span class="cabinet">(12)</span></td><td>Фізика і астрономія <span class="cabinet">(25)</span></td><td>Українська література <span class="cabinet">(31)</span></td><td>Спецтехнологія <span class="cabinet">(12)</span></td><td>—</td></tr>
+                <tr><td><strong>4</strong></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>5</strong></td><td>Інформатика <span class="cabinet">(40)</span></td><td>Хімія <span class="cabinet">(39)</span></td><td>Біологія і екол. <span class="cabinet">(34)</span></td><td>Електротехніка <span class="cabinet">(12)</span></td><td>—</td></tr>
+                <tr><td><strong>6</strong></td><td>Українська мова <span class="cabinet">(33)</span></td><td>Математика <span class="cabinet">(38)</span></td><td>Спецтехнологія <span class="cabinet">(12)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>7</strong></td><td>Електротехніка <span class="cabinet">(12)</span></td><td>Ел.матер.знав. <span class="cabinet">(12)</span></td><td>Фізкультура</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>8</strong></td><td>Захист України <span class="cabinet">(13)</span></td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Група КР-25 -->
+    <div class="schedule-container">
+        <h2>Група КР-25</h2>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Урок</th>
+                    <th>Понеділок</th>
+                    <th>Вівторок</th>
+                    <th>Середа</th>
+                    <th>Четвер</th>
+                    <th>П’ятниця</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>Інформатика <span class="cabinet">(40)</span></td><td>Спецтехнологія <span class="cabinet">(12)</span></td><td>Математика <span class="cabinet">(25)</span></td><td>Українська література <span class="cabinet">(31)</span></td><td>Виробниче навчання</td></tr>
+                <tr><td><strong>2</strong></td><td>Захист України <span class="cabinet">(13)</span></td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>3</strong></td><td>Укр. літ-ра <span class="cabinet">(31)</span></td><td>Біологія і екологія <span class="cabinet">(37)</span></td><td>Фізика і астрономія <span class="cabinet">(25)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>4</strong></td><td>Математика <span class="cabinet">(25)</span></td><td>Захист України <span class="cabinet">(13)</span></td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>5</strong></td><td>Спецтехнологія <span class="cabinet">(12)</span></td><td>Іноземна мова <span class="cabinet">(42/43)</span></td><td>Фізика і астрон. <span class="cabinet">(25)</span></td><td>Фізична культура</td><td>—</td></tr>
+                <tr><td><strong>6</strong></td><td>Громад. освіта <span class="cabinet">(22)</span></td><td>Українська мова <span class="cabinet">(33)</span></td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>7</strong></td><td>Фізкультура</td><td>Історія України <span class="cabinet">(41)</span></td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>8</strong></td><td>Хімія <span class="cabinet">(39)</span></td><td>Хімія <span class="cabinet">(39)</span></td><td>Географія <span class="cabinet">(41)</span></td><td>—</td><td>—</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Група КР-27 -->
+    <div class="schedule-container">
+        <h2>Група КР-27</h2>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Урок</th>
+                    <th>Понеділок</th>
+                    <th>Вівторок</th>
+                    <th>Середа</th>
+                    <th>Четвер</th>
+                    <th>П’ятниця</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>Фізика і астрономія <span class="cabinet">(36)</span></td><td>Web-дизайн <span class="cabinet">(40)</span></td><td>Виробниче навчання</td><td>Біологія і екол. <span class="cabinet">(37)</span></td><td>Web-дизайн <span class="cabinet">(40)</span></td></tr>
+                <tr><td><strong>2</strong></td><td>Хімія <span class="cabinet">(39)</span></td><td>Географія <span class="cabinet">(41)</span></td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>3</strong></td><td>Осн. програмув. <span class="cabinet">(40)</span></td><td>ТОІ <span class="cabinet">(11)</span></td><td>Історія України <span class="cabinet">(41)</span></td><td>Укр. мова <span class="cabinet">(33)</span></td><td>—</td></tr>
+                <tr><td><strong>4</strong></td><td>Іноземна мова <span class="cabinet">(42/43)</span></td><td>Технології <span class="cabinet">(11)</span></td><td>Всесвітня історія <span class="cabinet">(41)</span></td><td>Діагностика КІС <span class="cabinet">(22)</span></td><td>—</td></tr>
+                <tr><td><strong>5</strong></td><td>Математика <span class="cabinet">(25)</span></td><td>Укр. літ-ра <span class="cabinet">(31)</span></td><td>Комп’ютерна верстка <span class="cabinet">(23)</span></td><td>Фізкультура</td><td>—</td></tr>
+                <tr><td><strong>6</strong></td><td>Заруб. літ-ра <span class="cabinet">(21)</span></td><td>Інформатика <span class="cabinet">(40)</span></td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>7</strong></td><td>Громад. освіта <span class="cabinet">(22)</span></td><td>Захист України <span class="cabinet">(13)</span></td><td>Фізична культура</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>8</strong></td><td>Заруб. літ-ра <span class="cabinet">(31)</span></td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Група КР-31 -->
+    <div class="schedule-container">
+        <h2>Група КР-31</h2>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Урок</th>
+                    <th>Понеділок</th>
+                    <th>Вівторок</th>
+                    <th>Середа</th>
+                    <th>Четвер</th>
+                    <th>П’ятниця</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>Спецтехнологія <span class="cabinet">(35)</span></td><td>Виробниче навчання</td><td>Хімія <span class="cabinet">(39)</span></td><td>Виробниче навчання</td><td>Іноземна мова <span class="cabinet">(42/43)</span></td></tr>
+                <tr><td><strong>2</strong></td><td>Технології <span class="cabinet">(35)</span></td><td>Імп.та цифр.техн <span class="cabinet">(35)</span></td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>3</strong></td><td>Укр. мова <span class="cabinet">(31)</span></td><td>Інформатика <span class="cabinet">(40)</span></td><td>Математика <span class="cabinet">(38)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>4</strong></td><td>Укр. літ-ра <span class="cabinet">(31)</span></td><td>Спецтехнологія <span class="cabinet">(35)</span></td><td>Захист України <span class="cabinet">(13)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>5</strong></td><td>Історія України <span class="cabinet">(41)</span></td><td>Фізика і астрон. <span class="cabinet">(24)</span></td><td>Заруб. літ-ра <span class="cabinet">(33)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>6</strong></td><td>Всесвітня історія <span class="cabinet">(41)</span></td><td>Громад. освіта <span class="cabinet">(27)</span></td><td>Основи радіоелектроніка <span class="cabinet">(35)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>7</strong></td><td>Фізична культура</td><td>Біологія і екол. <span class="cabinet">(27)</span></td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>8</strong></td><td>Ел.радіо.вимір. <span class="cabinet">(35)</span></td><td>Фізкультура</td><td>—</td><td>—</td><td>—</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Група КР-32 -->
+    <div class="schedule-container">
+        <h2>Група КР-32</h2>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Урок</th>
+                    <th>Понеділок</th>
+                    <th>Вівторок</th>
+                    <th>Середа</th>
+                    <th>Четвер</th>
+                    <th>П’ятниця</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>Технологія верстатних робіт <span class="cabinet">(21)</span></td><td>Виробниче навчання</td><td>Технологія верстатних робіт <span class="cabinet">(21)</span></td><td>Виробниче навчання</td><td>Технологія верстатних робіт <span class="cabinet">(21)</span></td></tr>
+                <tr><td><strong>2</strong></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>3</strong></td><td>Історія України <span class="cabinet">(41)</span></td><td>Математика <span class="cabinet">(38)</span></td><td>Фізкультура</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>4</strong></td><td>Фізична культура</td><td>Укр. мова <span class="cabinet">(33)</span></td><td>Хімія <span class="cabinet">(39)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>5</strong></td><td>Укр. літ-ра <span class="cabinet">(33)</span></td><td>Технології <span class="cabinet">(21)</span></td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>6</strong></td><td>Іноземна мова <span class="cabinet">(42/43)</span></td><td>Фізика і астрон. <span class="cabinet">(24)</span></td><td>Техн.верст.робіт <span class="cabinet">(21)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>7</strong></td><td>Технологія верстатних робіт <span class="cabinet">(21)</span></td><td>Технологія верстатних робіт <span class="cabinet">(21)</span></td><td>Біологія і екол. <span class="cabinet">(39)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>8</strong></td><td>Захист України <span class="cabinet">(13)</span></td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Група КР-33 -->
+    <div class="schedule-container">
+        <h2>Група КР-33</h2>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Урок</th>
+                    <th>Понеділок</th>
+                    <th>Вівторок</th>
+                    <th>Середа</th>
+                    <th>Четвер</th>
+                    <th>П’ятниця</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>Історія України <span class="cabinet">(41)</span></td><td>Обсл.відвідувачів. <span class="cabinet">(11)</span></td><td>Всесвітня історія <span class="cabinet">(41)</span></td><td>Виробниче навчання</td><td>Інф. технології <span class="cabinet">(11)</span></td></tr>
+                <tr><td><strong>2</strong></td><td>Географія <span class="cabinet">(41)</span></td><td>ІК забез.обслуг. <span class="cabinet">(11)</span></td><td>Орг. техніка <span class="cabinet">(23)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>3</strong></td><td>Громадянська освіта <span class="cabinet">(22)</span></td><td>Хімія <span class="cabinet">(39)</span></td><td>Технології <span class="cabinet">(34)</span></td><td>Фахова термінол. <span class="cabinet">(23)</span></td><td>—</td></tr>
+                <tr><td><strong>4</strong></td><td>Фізика і астрон. <span class="cabinet">(24)</span></td><td>Осн. маркетингу <span class="cabinet">(34)</span></td><td>Біологія і екол. <span class="cabinet">(31)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>5</strong></td><td>Фізична культура</td><td>Захист України (Осн. мед. знань) <span class="cabinet">(27)</span></td><td>Фізкультура</td><td>Докум.забезпеч. <span class="cabinet">(11)</span></td><td>—</td></tr>
+                <tr><td><strong>6</strong></td><td>Математика <span class="cabinet">(38)</span></td><td>План.орган.техн. <span class="cabinet">(11)</span></td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>7</strong></td><td>Заруб. літ-ра <span class="cabinet">(31)</span></td><td>Укр. мова <span class="cabinet">(22)</span></td><td>Заруб. літ-ра <span class="cabinet">(31)</span></td><td>Інформатика <span class="cabinet">(40)</span></td><td>—</td></tr>
+                <tr><td><strong>8</strong></td><td>Іноземна мова <span class="cabinet">(42/43)</span></td><td>Укр. літ-ра <span class="cabinet">(22)</span></td><td>—</td><td>—</td><td>—</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Група КР-34 -->
+    <div class="schedule-container">
+        <h2>Група КР-34</h2>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Урок</th>
+                    <th>Понеділок</th>
+                    <th>Вівторок</th>
+                    <th>Середа</th>
+                    <th>Четвер</th>
+                    <th>П’ятниця</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td colspan="5" style="text-align: center;">Виробнича практика</td></tr>
+                <tr><td><strong>2</strong></td><td colspan="5" style="text-align: center;">—</td></tr>
+                <tr><td><strong>3</strong></td><td colspan="5" style="text-align: center;">—</td></tr>
+                <tr><td><strong>4</strong></td><td colspan="5" style="text-align: center;">—</td></tr>
+                <tr><td><strong>5</strong></td><td colspan="5" style="text-align: center;">—</td></tr>
+                <tr><td><strong>6</strong></td><td colspan="5" style="text-align: center;">—</td></tr>
+                <tr><td><strong>7</strong></td><td colspan="5" style="text-align: center;">—</td></tr>
+                <tr><td><strong>8</strong></td><td colspan="5" style="text-align: center;">—</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Група КР-35 -->
+    <div class="schedule-container">
+        <h2>Група КР-35</h2>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Урок</th>
+                    <th>Понеділок</th>
+                    <th>Вівторок</th>
+                    <th>Середа</th>
+                    <th>Четвер</th>
+                    <th>П’ятниця</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>Укр. літ-ра <span class="cabinet">(25)</span></td><td>Українська література <span class="cabinet">(34)</span></td><td>Інформатика <span class="cabinet">(40)</span></td><td>Спецтехнологія <span class="cabinet">(12)</span></td><td>Спецтехнологія <span class="cabinet">(12)</span></td></tr>
+                <tr><td><strong>2</strong></td><td>Громад. освіта <span class="cabinet">(22)</span></td><td>Укр. мова <span class="cabinet">(33)</span></td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>3</strong></td><td>Фізика і астрономія <span class="cabinet">(24)</span></td><td>Математика <span class="cabinet">(38)</span></td><td>Хімія <span class="cabinet">(39)</span></td><td>Технології <span class="cabinet">(41)</span></td><td>—</td></tr>
+                <tr><td><strong>4</strong></td><td>Іноземна мова <span class="cabinet">(42/43)</span></td><td>Математика <span class="cabinet">(38)</span></td><td>Заруб. літ-ра <span class="cabinet">(22)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>5</strong></td><td>Іноземна мова <span class="cabinet">(42/43)</span></td><td>Інформатика <span class="cabinet">(40)</span></td><td>Історія України <span class="cabinet">(32)</span></td><td>Захист України <span class="cabinet">(13)</span></td><td>—</td></tr>
+                <tr><td><strong>6</strong></td><td>Спецтехнологія <span class="cabinet">(12)</span></td><td>Фізика і астрономія <span class="cabinet">(24)</span></td><td>Спецтехнологія <span class="cabinet">(12)</span></td><td>Географія <span class="cabinet">(32)</span></td><td>—</td></tr>
+                <tr><td><strong>7</strong></td><td>Фізична культура</td><td>Біологія іекологія <span class="cabinet">(38)</span></td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>8</strong></td><td>Фізкультура</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Група КР-36 -->
+    <div class="schedule-container">
+        <h2>Група КР-36</h2>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Урок</th>
+                    <th>Понеділок</th>
+                    <th>Вівторок</th>
+                    <th>Середа</th>
+                    <th>Четвер</th>
+                    <th>П’ятниця</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>Фізика і астрономія <span class="cabinet">(24)</span></td><td>Технологія ЛОМ <span class="cabinet">(36)</span></td><td>Історія України <span class="cabinet">(32)</span></td><td>Виробниче навчання</td><td>Технології <span class="cabinet">(36)</span></td></tr>
+                <tr><td><strong>2</strong></td><td>Всесвітня історія <span class="cabinet">(32)</span></td><td>Іноземна мова <span class="cabinet">(42/43)</span></td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>3</strong></td><td>Географія <span class="cabinet">(32)</span></td><td>Громад. освіта <span class="cabinet">(27)</span></td><td>Технологія обсл. і ремонту ЛОМ <span class="cabinet">(36)</span></td><td>Математика <span class="cabinet">(25)</span></td><td>—</td></tr>
+                <tr><td><strong>4</strong></td><td>Інформатика <span class="cabinet">(40)</span></td><td>Хімія <span class="cabinet">(39)</span></td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>5</strong></td><td>Радіоелектроніка <span class="cabinet">(36)</span></td><td>Фізика і астрон. <span class="cabinet">(24)</span></td><td>Зарубіж.літ-ра <span class="cabinet">(23)</span></td><td>Осн.програмув. <span class="cabinet">(40)</span></td><td>—</td></tr>
+                <tr><td><strong>6</strong></td><td>Захист України <span class="cabinet">(13)</span></td><td>Фізична культура</td><td>Біологія і еколог. <span class="cabinet">(37)</span></td><td>Фізкультура</td><td>—</td></tr>
+                <tr><td><strong>7</strong></td><td>Укр.література <span class="cabinet">(38)</span></td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>8</strong></td><td>Електрорадіовим <span class="cabinet">(36)</span></td><td>Укр.мова <span class="cabinet">(33)</span></td><td>—</td><td>—</td><td>—</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Група КР-37 -->
+    <div class="schedule-container">
+        <h2>Група КР-37</h2>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Урок</th>
+                    <th>Понеділок</th>
+                    <th>Вівторок</th>
+                    <th>Середа</th>
+                    <th>Четвер</th>
+                    <th>П’ятниця</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>Українська мова <span class="cabinet">(31)</span></td><td>Виробниче навчання</td><td>Укр.мова <span class="cabinet">(37)</span></td><td>Радіоелектроніка <span class="cabinet">(36)</span></td><td>Укр.література <span class="cabinet">(37)</span></td></tr>
+                <tr><td><strong>2</strong></td><td>Інформатика <span class="cabinet">(40)</span></td><td>Біологія і екол. <span class="cabinet">(37)</span></td><td>Чит.креслень <span class="cabinet">(37)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>3</strong></td><td>Технологія ЛОМ <span class="cabinet">(36)</span></td><td>Хімія <span class="cabinet">(39)</span></td><td>Ел.радіовимір <span class="cabinet">(36)</span></td><td>Технології <span class="cabinet">(11)</span></td><td>—</td></tr>
+                <tr><td><strong>4</strong></td><td>Історія України <span class="cabinet">(41)</span></td><td>Математика <span class="cabinet">(39)</span></td><td>Захист України <span class="cabinet">(36)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>5</strong></td><td>Фізика і астрон. <span class="cabinet">(24)</span></td><td>Захист України <span class="cabinet">(21)</span></td><td>Історія України <span class="cabinet">(41)</span></td><td>Фізична культура</td><td>—</td></tr>
+                <tr><td><strong>6</strong></td><td>Електротехніка <span class="cabinet">(37)</span></td><td>Іноземна мова <span class="cabinet">(42/43)</span></td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>7</strong></td><td>Географія <span class="cabinet">(41)</span></td><td>Українська література <span class="cabinet">(22)</span></td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>8</strong></td><td>Фізкультура</td><td>Інформатика <span class="cabinet">(40)</span></td><td>—</td><td>—</td><td>—</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Група Т-1 -->
+    <div class="schedule-container">
+        <h2>Група Т-1</h2>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Урок</th>
+                    <th>Понеділок</th>
+                    <th>Вівторок</th>
+                    <th>Середа</th>
+                    <th>Четвер</th>
+                    <th>П’ятниця</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>Виробниче навчання</td><td>Електрорадіо-вимірювання <span class="cabinet">(35)</span></td><td>Ринкова екон. <span class="cabinet">(34)</span></td><td>Виробниче навчання</td><td>Чит. креслень <span class="cabinet">(35)</span></td></tr>
+                <tr><td><strong>2</strong></td><td>Електротехніка <span class="cabinet">(37)</span></td><td>Інф. технології <span class="cabinet">(11)</span></td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>3</strong></td><td>Спецтехнологія <span class="cabinet">(13)</span></td><td>Спецтехнологія <span class="cabinet">(13)</span></td><td>Спецтехнологія <span class="cabinet">(37)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>4</strong></td><td>35</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>5</strong></td><td>Фізична культура</td><td>Читання креслень <span class="cabinet">(35)</span></td><td>Матеріалознав. <span class="cabinet">(34)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>6</strong></td><td>Спецтехнологія <span class="cabinet">(34)</span></td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td><strong>7</strong></td><td>Охорона праці <span class="cabinet">(35)</span></td><td>Осн.трудов.з-ва <span class="cabinet">(13)</span></td><td>Осн.трудов.з-ва <span class="cabinet">(13)</span></td><td>—</td><td>—</td></tr>
+                <tr><td><strong>8</strong></td><td>Спецтехнологія <span class="cabinet">(35)</span></td><td>Спецтехнологія <span class="cabinet">(38)</span></td><td>—</td><td>—</td><td>—</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    .all-schedules {
+        font-family: Arial, sans-serif;
+        color: #333;
+    }
+    .schedule-container {
+        margin-bottom: 40px;
+    }
+    .schedule-container h2 {
+        border-bottom: 2px solid #0056b3;
+        padding-bottom: 5px;
+        color: #0056b3;
+    }
+    .schedule-container table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+        background-color: #fff;
+    }
+    .schedule-container th {
+        background-color: #f2f2f2;
+        text-align: center;
+        padding: 10px;
+        border: 1px solid #ddd;
+    }
+    .schedule-container td {
+        text-align: center;
+        padding: 8px;
+        border: 1px solid #ddd;
+    }
+    .cabinet {
+        color: #666;
+        font-size: 0.85em;
+    }
+</style>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Мукачівський політехнічний фаховий коледж ВПУ №3. Усі права захищені.</p>
+    </footer>
+
+    <script>
+        function showPage(pageId, event) {
+            if(event) event.preventDefault();
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(p => p.classList.remove('active'));
+            
+            document.getElementById(pageId).classList.add('active');
+            
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(l => l.classList.remove('active'));
+            if(event) event.target.classList.add('active');
+        }
+
+        function filterSchedule() {
+            const selectedGroup = document.getElementById('groupSelect').value;
+            const rows = document.querySelectorAll('#scheduleContent tbody tr');
+            
+            rows.forEach(row => {
+                const group = row.getAttribute('data-group');
+                if (selectedGroup === 'all' || group === selectedGroup) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
